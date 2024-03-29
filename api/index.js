@@ -8,31 +8,35 @@ const app = express();
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
-const uploadMiddleware = multer({ dest: "api/uploads/" });
+//const uploadMiddleware = multer({ dest: "api/uploads/" });
+const uploadMiddleware = multer({ dest: "uploads/" });
 const fs = require("fs");
 require("dotenv").config();
 const salt = bcrypt.genSaltSync(10);
 const secret = "eiurtrieo345rewdn";
 
-app.use(
-  cors({ credentials: true, origin: "https://my-blogify-zfkr.vercel.app" })
-);
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/api/uploads", express.static(__dirname + "/uploads"));
+// app.use("/api/uploads", express.static(__dirname + "/uploads"));
+app.use("/uploads", express.static(__dirname + "/uploads"));
 console.log(__dirname + "/uploads");
 
-const uri = process.env.MONGO_URL;
-console.log(uri); // Assuming you've stored the URI in an environment variable
-mongoose
-  .connect(uri)
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.error("Error connecting to MongoDB:", err);
-  });
+// const uri = process.env.MONGO_URL;
+// console.log(uri); // Assuming you've stored the URI in an environment variable
+// mongoose
+//   .connect(uri)
+//   .then(() => {
+//     console.log("Connected to MongoDB");
+//   })
+//   .catch((err) => {
+//     console.error("Error connecting to MongoDB:", err);
+//   });
+
+mongoose.connect(
+  "mongodb+srv://ExploreSphere:ExploreSphere@cluster0.acxbj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+);
 
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
