@@ -8,7 +8,7 @@ export default function LoginPage() {
   const { setUserInfo } = useContext(UserContext);
   async function login(ev) {
     ev.preventDefault();
-    const response = await fetch("http://localhost:5000/login", {
+    const response = await fetch("https://my-blogify-ji6l.vercel.app/login", {
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
@@ -47,7 +47,6 @@ export default function LoginPage() {
         onChange={(ev) => setPassword(ev.target.value)}
       />
       <button>Login</button>
-      <p>you you Don't have account</p>
     </form>
   );
 }

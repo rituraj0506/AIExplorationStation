@@ -17,7 +17,7 @@ export default function CreatePost() {
     data.set("file", files[0]);
     ev.preventDefault();
     // console.log(f);
-    const response = await fetch("http://localhost:5000/post", {
+    const response = await fetch("https://my-blogify-ji6l.vercel.app/post", {
       method: "POST",
       body: data,
       credentials: "include",
