@@ -14,7 +14,9 @@ require("dotenv").config();
 const salt = bcrypt.genSaltSync(10);
 const secret = "eiurtrieo345rewdn";
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(
+  cors({ credentials: true, origin: "https://my-blogify-zfkr.vercel.app" })
+);
 app.use(express.json());
 app.use(cookieParser());
 
